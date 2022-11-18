@@ -7,8 +7,6 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 // Variabile container
 const contenitore = document.getElementById('container');
-// Richiama funzione numeri casuali
-const numeriCasuali = numRandom();
 // H2 dove verranno visualizzati i numeri
 const numVisualizzati = document.getElementById('number');
 // H2 del timer
@@ -18,11 +16,16 @@ const timerPagina = document.getElementById('timer');
 let seconds = 30;
 // Countdown ad intervallo di 1 sec
 let timer = setInterval(countdown, 1000);
+let numeri = [];
 
-for (let i = 1; i <= 5; i++) {
-  numVisualizzati.innerHTML = numeriCasuali;
-  console.log(numeriCasuali); 
+while (numeri.length < 5){
+  // Richiama funzione numeri casuali
+  const numeriCasuali = numRandom(1, 100);
+  if (!numeri.includes(numeriCasuali)){
+    numeri.push(numeriCasuali);
+  }
 }
+numVisualizzati.innerHTML = numeri;
 
 // Funzione per far partire il countdown in pagina
 function countdown() {
@@ -40,6 +43,6 @@ function countdown() {
 
 // FUNZIONI--------------------------------------
 // GENERARE NUMERO RANDOM
-function numRandom() {
-  return Math.floor((Math.random() * 100) +1);
+function numRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
