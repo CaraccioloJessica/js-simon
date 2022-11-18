@@ -7,33 +7,39 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 // Variabile container
 const contenitore = document.getElementById('container');
-// Richiama funzione numeri casuali da 1 a 5
+// Richiama funzione numeri casuali
 const numeriCasuali = numRandom();
+// H2 dove verranno visualizzati i numeri
+const numVisualizzati = document.getElementById('number');
+// H2 del timer
+const timerPagina = document.getElementById('timer');
+
 // Setta i secondi a 30
 let seconds = 30;
 // Countdown ad intervallo di 1 sec
 let timer = setInterval(countdown, 1000);
+
+for (let i = 1; i <= 5; i++) {
+  numVisualizzati.innerHTML = numeriCasuali;
+  console.log(numeriCasuali); 
+}
 
 // Funzione per far partire il countdown in pagina
 function countdown() {
   // Se arriva a -1 il timer si ferma e il contenitore si svuota
   if (seconds == -1){
     clearInterval(timer);
-    contenitore.innerHTML = '';
+    timerPagina.innerHTML = '';
   }
   // Se il timer parte da 30sec, va a diminuire fino a quando non arriva a -1 (vedi sopra)
   else {
-    contenitore.innerHTML = seconds + ' secondi rimanenti';
+    timerPagina.innerHTML = seconds + ' secondi rimanenti';
     seconds --;
   }
 }
 
-
-
 // FUNZIONI--------------------------------------
-// GENERARE NUMERO RANDOM DA 1 A 5
-function numRandom(min, max) {
-  min = 1;
-  max = 5;
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+// GENERARE NUMERO RANDOM
+function numRandom() {
+  return Math.floor((Math.random() * 100) +1);
 }
