@@ -15,9 +15,10 @@ const timerPagina = document.getElementById('timer');
 // Setta i secondi a 30
 let seconds = 30;
 // Countdown ad intervallo di 1 sec
-let timer = setInterval(countdown, 1000);
-let numeri = [];
+const timer = setInterval(countdown, 1000);
+const numeri = [];
 
+// Stampa i 5 numeri casuali
 while (numeri.length < 5){
   // Richiama funzione numeri casuali
   const numeriCasuali = numRandom(1, 100);
@@ -29,10 +30,11 @@ numVisualizzati.innerHTML = numeri;
 
 // Funzione per far partire il countdown in pagina
 function countdown() {
-  // Se arriva a -1 il timer si ferma e il contenitore si svuota
+  // Se arriva a -1 il timer si ferma e gli h2 si svuotano
   if (seconds == -1){
     clearInterval(timer);
     timerPagina.innerHTML = '';
+    numVisualizzati.innerHTML = '';
   }
   // Se il timer parte da 30sec, va a diminuire fino a quando non arriva a -1 (vedi sopra)
   else {
